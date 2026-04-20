@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For Naya</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 40px;
+    }
+
+    #text {
+        font-size: 18px;
+        white-space: pre-line;
+        margin-bottom: 30px;
+        min-height: 150px;
+        position: relative;
+        z-index: 2;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: white;
+        color: black;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        z-index: 2;
+        position: relative;
+    }
+
+    button:hover {
+        background: #ccc;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        background: #fff;
+        margin-left: 3px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
+
+    /* LOVE FALLING */
+    .heart {
+        position: absolute;
+        top: -50px;
+        color: red;
+        font-size: 20px;
+        animation: fall linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<audio id="bgm" loop>
+    <source src="risk-it-all.mp3" type="audio/mp3">
+</audio>
+
+<div id="text"></div>
+<button onclick="nextText()">Next</button>
+
+<script>
+const texts = [
+`Hi nayaaaaaa
+Welcome di sesi curhat bodoh inii
+Mohon luangkan 5 menit aja yaaa
+
+Pleasee 🥺`,
+
+`Nay sorry ya kalau w tbtb chat gini, 
+Wa gtw nay W biasanya dingin banget sama org", semenjak kenal u keknya w susah gt untuk balik ke w yg kemarin" wkwkw.`,
+
+`W ud lama banget gk pingin buka hati, cm kemarin mungkin pas banget ya timingnya pas x w blg ke van w pingin buka hati lg untuk serius eh malah kenalny sama u haha. 
+Awalny w B aja di chatan, cm pas pertama x ketemu pas kenalan disuruh van w gtw knp gugup pdhl biasanya nya b aj haha dan w liat u baik banget lucu lagi wkwk mungkin itu jg bisa bkin w Luluh kali ya`,
+
+`Kemarin w beli boneka jg krna takut u marah w ga sengaja banget meluk u pas tdr sumpah :). 
+Cm gtw nay dari awal s u k a 
+ma u ud niatan serius nay cm w dari awal salah nay terlalu bawa perasaan, harusnya w sadar kalau w ga layak untuk u haha 🙂. maaf yah kalau w terlalu exited ke u hingga terlalu berlebihan ,w rasa u pasti uda risih kali ilfeel malahan wkwk`,
+
+`Wa sadar sendiri kalau w ga layak banget sama u dari segi mana pun. 
+Wa terlalu exited berlebihan yang harusnya w jd laki" hrs bs kontrol ga sih wkwk. 
+Dan di titik paling bikin w merasa w ga layak ya pas u Marah karena w mikirnya w janji kemarin di Teams, eh blm apa apa u dah w buat sedih & marah. makanya w khawatir banget cm yauda la wkwk mmg w g layak sm skali`,
+
+`Makasih ya udah selalu welcome ke w , maaf juga gabisa nepati janji yang w pernah bilang di Teams w mmg ga sanggup nepati lagi nay w sadar w ga layak nay . semua chat kita w gakan hapus si paling kalau w kangen w liat" aja wkwk
+Maaf ya nay w harus block u, w takut w gbs ngontrol diri w dan trs cht / ganggu u. 
+Mna tw ad papasan diluar kita ttp kawan ya nay 🙃
+Sekali lagi maaf untuk semua Hal yang kurang menyenangkan nay.`,
+
+`U akan selalu ada di hati w nay, 
+w ud prnh blg ke van pas dia tanya kl ggal gmn w hanya jawab g akan ada Nay ke 2 ni first buka hati lagi dan kalau gagal ya ga akan lagi wkwk
+Semoga Siapapun yang akan nemenin kamu di masa depan, ga akan buat kamu sedih dan selalu berusaha membahagiakan mu ya nay`,
+
+`First n last maybe, 
+W ingin serius sm u Nay cm w ud pilah W ga layak sama sekali Nay. 
+I'm Bad 👎
+Mkasih Sudah Singgah Di Hati Nay ☺
+Dan akan selalu ada ruang untuk u disana Nay. 
+Hal paling beruntung dan ga akan w sesali adalah bertemu dengan u Nay.`,
+
+`Bye" 
+Maaf kalau hbs baca ini u pasti mikirnya w aneh, 
+Wa harap pertemanan kita tetap ada nay.
+Jangan benci sama w yaaa , 
+I don't know why i very love with u sampai w buat gini untuk pamit sama u 🙃
+Berat banget sih cm wa harus pamit nay w ga kuat liat w yg selalu menggangu u. 
+Yuda deh uda kepanjangan banget. 
+
+Semoga bisa bertemu kembali di Kemudian Hari`,
+
+`Sekali lagi dari hati yang paling dalam wa minta izin mau bilang 
+
+I L Y S M Nayaaa Gemeszz <3 
+
+Maaf kalau cara ku salah dan tidak berkompeten
+
+Dengan Berat Hati 
+
+IJIN BLOCK 🙃`
+];
+
+let index = 0;
+let typing = false;
+
+const textDiv = document.getElementById("text");
+const bgm = document.getElementById("bgm");
+
+function typeText(text, i = 0) {
+    typing = true;
+    if (i < text.length) {
+        textDiv.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+        setTimeout(() => typeText(text, i + 1), 25);
+    } else {
+        textDiv.innerHTML = text;
+        typing = false;
+    }
+}
+
+function nextText() {
+    if (typing) return;
+
+    if (index === 0) {
+        bgm.play();
+    }
+
+    if (index < texts.length) {
+        typeText(texts[index]);
+        index++;
+
+        if (index >= texts.length) {
+            document.querySelector("button").innerText = "Selesai";
+        }
+    }
+}
+
+/* GENERATE LOVE FALLING */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
